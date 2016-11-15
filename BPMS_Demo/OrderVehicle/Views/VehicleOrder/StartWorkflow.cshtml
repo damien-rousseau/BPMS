@@ -1,0 +1,11 @@
+﻿@model IEnumerable<SelectListItem>
+@{
+    ViewBag.Title = "StartWorkflow";
+}
+
+@using (Html.BeginForm("StartWorkflow", "VehicleOrder", FormMethod.Post))
+{
+    @Html.DropDownList("Employee", Model);
+
+    <input type="submit" name="submitButton" value="Submit" />
+}

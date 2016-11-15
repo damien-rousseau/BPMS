@@ -1,0 +1,23 @@
+﻿@model OrderVehicle.Models.SelectedCarViewModel
+@{
+    ViewBag.Title = "ApprovalByFleetManager";
+}
+
+<h2>Approval By FleetManager</h2>
+
+@using (Html.BeginForm("ApprovalByFleetManager", "VehicleOrder", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.WorkflowPersistenceId);
+
+    <div>@Html.LabelFor(m => m.Employee.LastName):  @Html.TextBoxFor(m => m.Employee.LastName, new { @readonly = "true" })</div>
+    <div>@Html.LabelFor(m => m.Employee.FirstName):  @Html.TextBoxFor(m => m.Employee.FirstName, new { @readonly = "true" })</div>
+
+    <div>@Html.LabelFor(m => m.VehicleMake):  @Html.TextBoxFor(m => m.VehicleMake, new { @readonly = "true" })</div>
+    <div>@Html.LabelFor(m => m.VehicleModel):  @Html.TextBoxFor(m => m.VehicleModel, new { @readonly = "true" })</div>
+
+    <div>@Html.LabelFor(m => m.FleetManagerRemark):  @Html.TextBoxFor(m => m.FleetManagerRemark)</div>
+
+    <input type="submit" name="submitButton" value="Accept" />
+    <input type="submit" name="submitButton" value="Decline" />
+}
+

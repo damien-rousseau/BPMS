@@ -1,0 +1,42 @@
+﻿@model OrderVehicle.Models.EmployeeSelectCarViewModel
+
+@{
+    ViewBag.Title = "EmployeeSelectCar";
+}
+
+<h2>Employee Select Car</h2>
+
+@using (Html.BeginForm("EmployeeSelectCar", "VehicleOrder", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.WorkflowPersistenceId);
+
+    <div>@Html.LabelFor(m => m.ListOfMakes):  @Html.DropDownListFor(m => m.VehicleMake, Model.ListOfMakes)</div>
+    <div>@Html.Label("Models"):  @Html.DropDownListFor(m => m.VehicleModel, Model.ListOfModels)</div>
+
+    <input type="submit" name="submitButton" value="Submit" />
+}
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function()
+        {
+            var url = '@Url.Action("GetModels", "VehicleOrder")';
+            var models = $('#VehicleModel');
+
+            $("#VehicleMake").change(function ()
+            {
+                var id = $(this).val();
+
+                $.getJSON(url, { makeId: id }, function(response)
+                {
+                    models.empty();
+                    $.each(response, function (index, item) {
+                        models.append('<option value="' + index + '">' + item + '</option>');
+                    });
+                });
+            });
+        });
+    </script>
+}

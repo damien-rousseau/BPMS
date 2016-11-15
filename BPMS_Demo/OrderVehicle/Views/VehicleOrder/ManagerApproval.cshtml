@@ -1,0 +1,20 @@
+﻿@model OrderVehicle.Models.ManagerApprovalModel
+
+@{
+    ViewBag.Title = "ManagerApproval";
+}
+
+<h2>Manager Approval</h2>
+
+@using (Html.BeginForm("ManagerApproval", "VehicleOrder", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.WorkflowPersistenceId);
+
+    <div>@Html.LabelFor(m => m.Employee.LastName):  @Html.TextBoxFor(m => m.Employee.LastName, new { @readonly = "true" })</div>
+    <div>@Html.LabelFor(m => m.Employee.FirstName):  @Html.TextBoxFor(m => m.Employee.FirstName, new { @readonly = "true" })</div>
+
+    <div>@Html.LabelFor(m => m.ManagerRemark):  @Html.TextBoxFor(m => m.ManagerRemark)</div>
+
+    <input type="submit" name="submitButton" value="Accept" />
+    <input type="submit" name="submitButton" value="Decline" />
+}
